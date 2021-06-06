@@ -13,12 +13,20 @@ students = [
   "Norman Bates",
 ]
 
-# and then print them
-puts "The students of Villains Academy"
-puts "-------------"
-students.each do |student|
-  puts student
+def print_header
+  puts "The students of Villains Academy"
+  puts "-------------"
 end
 
-# finally, we print the total
-puts "Overall, we have #{students.count} great students"
+def print_names(names)
+  names.each do |student|
+    puts student
+  end
+end
+
+def print_footer(names)
+  puts "Overall, we have #{names.count} great students"
+end
+
+# We are passing the students variable to the methods as an argument (called "names" in both cases).
+# This is because the methods don't have access to local variables defined outside them.
