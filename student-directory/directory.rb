@@ -1,5 +1,16 @@
 @students = [] # declared before loop so that it is available in several iterations
 
+def save_students
+  file = File.open("students.csv", "w")  # We'll store the data in a text file in the same directory where the program is. We'll use the comma-separated format (CSV) to store the data
+  @students.each { |student|
+    student_data = [student[:name], student[:cohort]]
+    csv_line = student_data.join(",")
+    # we use the method puts() to write to a file. When we call it on its own, without any file reference, Ruby assumes that we want to write to standard output.
+    file.puts csv_line
+  }
+  file.close
+end
+
 def input_students
   puts "Please enter the names of the students"
   puts "To finish, just hit return twice"
@@ -33,6 +44,7 @@ end
 def print_menu
   puts "1. Input the students"
   puts "2. Show the students"
+  puts "3. Save the students"
   puts "9. Exit"
 end
 
@@ -48,6 +60,8 @@ def process(selection)
     input_students
   when "2"
     show_students
+  when "3"
+    save_students
   when "9"
     exit
   else
